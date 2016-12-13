@@ -74,6 +74,7 @@ A nossa estrutura de pasta será:
   |_css (os arquivos CSS processados)
 |_src (os arquivos de desenvolvimento)
   |_sass (os arquivos Sass para serem processados)
+
 ```
 
 Crie um arquivo gulpfile.js na raiz do seu projeto. Teremos o seguinte conteúdo inicial chamando os módulos:
@@ -91,7 +92,8 @@ Depois, incluiremos os nossos caminhos utilizando uma notação de objeto:
 var config = {
   srcPath: 'src/',
   distPath: 'dist/'
-};```
+};
+```
 
 Depois iremos criar as tarefas base para registrá-las apenas:
 
@@ -152,6 +154,7 @@ gulp.task('watch', ['browserSync'], function() { //inicia a watch, colocando jun
 ```
 
 O arquivo limpo ficará algo como:
+
 ```jasvascript
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
