@@ -1,0 +1,9 @@
+$gray:  #333333;
+
+body {
+  background-color: lighten($gray, 20%);
+
+  > .container {
+    background-color: white;
+  }
+}

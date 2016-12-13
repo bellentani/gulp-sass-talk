@@ -1,0 +1,27 @@
+{
+  "name": "gulp-sass-talk",
+  "version": "1.0.0",
+  "description": "Material prático utilizado para demonstrar no talk.",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bellentani/gulp-sass-talk.git"
+  },
+  "author": "Poe Bellentani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bellentani/gulp-sass-talk/issues"
+  },
+  "homepage": "https://github.com/bellentani/gulp-sass-talk#readme"
+}
