@@ -88,7 +88,7 @@ browserSync = require('browser-sync').create();
 
 Depois, incluiremos os nossos caminhos utilizando uma notação de objeto:
 
-```jasvascript
+```javascript
 var config = {
   srcPath: 'src/',
   distPath: 'dist/'
@@ -97,7 +97,7 @@ var config = {
 
 Depois iremos criar as tarefas base para registrá-las apenas:
 
-```jasvascript
+```javascript
 gulp.task('browserSync', function(){
   console.log('browserSync');
 });
@@ -123,7 +123,7 @@ O resultado será a impressão de mensagens em seu console das três tarefas na 
 
 Na sequência vamos cadastrar:
 
-```jasvascript
+```javascript
 gulp.task('browserSync', function() {
   browserSync.init({ //inicia o server do browsersync
     server: {
@@ -155,7 +155,7 @@ gulp.task('watch', ['browserSync'], function() { //inicia a watch, colocando jun
 
 O arquivo limpo ficará algo como:
 
-```jasvascript
+```javascript
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
 sourcemaps = require('gulp-sourcemaps'),
