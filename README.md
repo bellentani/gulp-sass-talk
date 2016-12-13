@@ -1,4 +1,3 @@
-# gulp-sass-talk
 #Gulp + Sass: automatize a compilação do seu CSS
 
 Gulp é um task runner. O que isso quer dizer? Traduzindo livremente ele é um “automatizador de tarefas”. Ele executa tarefas determinadas de seu cotidiano de trabalho (workflow) e as executa de forma rápida economizando - o que economiza tempo e trabalho.
@@ -245,7 +244,7 @@ gulp.task('watch-compass', ['browserSync'], function() {
 });
 ```
 
-Execute a tarefa `gulp watch-compass` e execute teste. Voilá! :)
+Rode a tarefa `gulp watch-compass` e execute o teste. Voilá, está funcionando (ou era pra estar)! :)
 
 O arquivo ficará da seguinte maneira:
 
@@ -314,4 +313,4 @@ gulp.task('watch-compass', ['browserSync'], function() {
 ```
 
 ##Dúvidas, bugs e sugestões
-Basta crirar uma issue que a gente discute e entramos em contato. Caso queira conversar sobre qualquer assunto relacionado entre em contato através do [meu site](www.bonsaiux.com.br).Material prático utilizado para demonstrar no talk.
+Basta crirar uma issue que a gente discute e entramos em contato. Caso queira conversar sobre qualquer assunto relacionado entre em contato através do [meu site](www.bonsaiux.com.br).
