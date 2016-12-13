@@ -29,11 +29,11 @@ Dentro do pacote do Gulp a gente já vem três coisas essenciais:
 
 Para utilizar ele no seu cotidiano, é indicado que ele seja instalado globalmente:
 
-```$ npm install -g gulp```
+`$ npm install -g gulp`
 
 Para  instalar localmente e salvar em seu package.json:
 
-```$ npm install --save-dev gulp```
+`$ npm install --save-dev gulp`
 
 ##O nosso workflow
 Nós vamos apenas gerar arquivos CSS utilizando Sass e minificá-los já com a geração de um arquivo MAP para permitir que debuguemos ele em ambientes de homologação.
@@ -52,15 +52,15 @@ Para isso vamos utilizar os pacotes gulp-sass, gulp-sourcemaps e browser-sync.
 
 Para instalar eles podemos fazer um a um:
 
-```$ npm install --save-dev gulp-sass```
+`$ npm install --save-dev gulp-sass`
 
-```$ npm install --save-dev gulp-sourcemaps```
+`$ npm install --save-dev gulp-sourcemaps`
 
-```$ npm install --save-dev browser-sync```
+`$ npm install --save-dev browser-sync`
 
 Ou instalar todos de uma vez:
 
-```$ npm install --save-dev gulp-sass gulp-sourcemaps browser-sync```
+`$ npm install --save-dev gulp-sass gulp-sourcemaps browser-sync`
 
 O nosso workflow vai ser forma com três tasks principais:
 Iremos utilizar a gulp sass para gerar o Sass;
@@ -113,11 +113,11 @@ gulp.task('watch', function(){
 
 Teste elas em seu console chamando:
 
-```gulp sass```
+`gulp sass`
 
-```gulp watch```
+`gulp watch`
 
-```gulp browserSybc```
+`gulp browserSync`
 
 O resultado será a impressão de mensagens em seu console das três tarefas na ordem que você as chamou.
 
@@ -210,7 +210,7 @@ Para utilizar o compass, por exemplo, você pode fazer uma pequena alteração n
 
 Se tiver o Ruby + Sass + Compass na sua máquina, só instalar o módulo para gulp:
 
-```$ npm install --save-dev gulp-compass```
+`$ npm install --save-dev gulp-compass`
 
 Crie uma task compass:
 
