@@ -344,4 +344,4 @@ gulp.task('watch-compass', ['browserSync'], function() {
 
 ##Dúvidas, bugs e sugestões
 
-Basta crirar uma issue que a gente discute e entramos em contato. Caso queira conversar sobre qualquer assunto relacionado entre em contato através do [meu site](www.bonsaiux.com.br).
+Basta criar uma [issue](https://github.com/bellentani/gulp-sass-talk/issues) que a gente discute e entramos em contato. Caso queira conversar sobre qualquer assunto relacionado entre em contato através do [meu site](www.bonsaiux.com.br).
