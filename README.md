@@ -1,8 +1,8 @@
 #Gulp + Sass: automatize a compilação do seu CSS
 
-Gulp é um task runner. O que isso quer dizer? Traduzindo livremente ele é um “automatizador de tarefas”. Ele executa tarefas determinadas de seu cotidiano de trabalho (workflow) e as executa de forma rápida - o que economiza retrabalho e gera ganho de tempo.
+Gulp é um task runner. O que isso quer dizer? Traduzindo livremente ele é um “automatizador de tarefas”. Ele executa tarefas repetitivas de seu cotidiano de trabalho (workflow) - muitas vezes de forma automática, o que economiza retrabalho e gera ganho de tempo.
 
-É uma prática já antiga e utilizada por caras como Ant (para Apache), Phing (para PHP) e Rake (para Ruby) - e também pelo primeiro "rockstar" dessa era Javascript, o **Grunt**.
+É uma prática já antiga e utilizada por caras como *Ant* (para Apache), *Phing* (para PHP) e *Rake* (para Ruby) - e também pelo primeiro "rockstar" dessa era Javascript, o **Grunt**.
 
 ##Gulp vs. Grunt: ROUND 1 FIGHT!
 
