@@ -81,6 +81,7 @@ $ npm install --save-dev gulp-sass gulp-sourcemaps browser-sync
 ```
 
 O nosso workflow vai se formar com três tasks principais:
+
 1. Iremos utilizar a gulp sass para gerar o Sass;
 * Configurar o reload do automático do navegador usando o browserSync;
 * E a gulp watch para ficar “vigiando” modificações em arquivos Sass no nosso diretório.
