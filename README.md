@@ -1,41 +1,53 @@
 #Gulp + Sass: automatize a compilação do seu CSS
 
-Gulp é um task runner. O que isso quer dizer? Traduzindo livremente ele é um “automatizador de tarefas”. Ele executa tarefas determinadas de seu cotidiano de trabalho (workflow) e as executa de forma rápida economizando - o que economiza tempo e trabalho.
+Gulp é um task runner. O que isso quer dizer? Traduzindo livremente ele é um “automatizador de tarefas”. Ele executa tarefas determinadas de seu cotidiano de trabalho (workflow) e as executa de forma rápida - o que economiza retrabalho e gera ganho de tempo.
 
-É uma prática já antiga e utilizada por caras como Ant, Phing e Rake - e também pelo primeiro rockstar dessa era Javascript, o Grunt.
+É uma prática já antiga e utilizada por caras como Ant (para Apache), Phing (para PHP) e Rake (para Ruby) - e também pelo primeiro "rockstar" dessa era Javascript, o **Grunt**.
 
 ##Gulp vs. Grunt: ROUND 1 FIGHT!
 
-Existem dois task runners muito populares atualmente, o Gulp e o Grunt, cada um com suas características próprias.
+Existem dois task runners muito populares atualmente, o [Gulp](http://gulpjs.com/) e o [Grunt](http://gruntjs.com/), cada um com suas características próprias.
 
-O Grunt foi o primeiro que mexi e o primeiro a ganhar popularidade, permitindo que você automatizasse tarefas como o pré-processamento de CSS com Less e Sass, mas também com uma diversidade enorme de outras tarefas (concatenar, minificar e versionar Javascript, por exemplo). Sua sintaxe é baseada em uma estrutura JSON e pode ser mesclada com Javascript, o que deixa a sua configuração meio confusa em workflows complexos.
+O **Grunt** foi o primeiro que mexi (e foi recentemente, primeiro contato em 2013) e o primeiro a ganhar popularidade: ele permitia que você automatizasse tarefas como o pré-processamento de CSS com [Less](http://lesscss.org/) e [Sass](http://sass-lang.com/), mas também com uma diversidade enorme de outras tarefas (concatenar, minificar e versionar Javascript, por exemplo). Sua sintaxe é baseada em uma estrutura JSON e pode ser mesclada com Javascript, o que deixa a sua configuração meio confusa em workflows complexos porque exige um conhecimento profundo do que está acontecendo em cada parte do seu arquivo de configuração.
 
-O Gulp veio comendo pelas bordas, mas com um monte de material já “no pacote” que, comparado ao Grunt, antes precisava ser instalado individualmente e dava um certo trabalho para manter atualizado. Sem contar que Gulp tem uma performance maior porque usa um sistema de “pipelines” que forma filas e permite a criação de workflows mais complexos - e sua sintaxe é muito mais parecida com o que a gente usa em nossos Javascripts cotidianos (com callbacks e afins).
+O **Gulp** veio comendo pelas bordas, mas com um monte de material já “no pacote” que antes precisava ser instalado individualmente e dava um certo trabalho para manter atualizado - se comparado ao Grunt. Sem contar que Gulp tem uma performance maior porque usa um sistema de “pipelines” que forma filas e permite a criação de workflows mais complexos - e sua sintaxe é muito mais parecida com o que a gente usa em nossos Javascripts cotidianos (com callbacks e afins).
 
 Dentro do pacote do Gulp a gente já vem três coisas essenciais:
 
-* Você define tarefas para o gulp com o gulp.task()
-* Abre, acessa ou define arquivos e diretórios através de gulp.src()
-* Define o diretório de destino do output com gulp.dest()
-* Vigia modificações no file system com gulp.watch()
+* Você define tarefas para o gulp com o `gulp.task()`
+* Abre, acessa ou define arquivos e diretórios através de `gulp.src()`
+* Define o diretório de destino do output com `gulp.dest()`
+* Vigia modificações no file system com `gulp.watch()`
 
 ##Instalação
 
 ###Pré-requisitos
 
-* Ter o Node.js e o NPM instalados;
-* Opcional: conhecer um pouco da arquitetura do package.json
+* Ter o *Node.js* e o *NPM* instalados (se não tiver, só baixar no site do [Node.js](https://nodejs.org/en/download/) e instalar);
+* Opcional: conhecer um pouco da arquitetura do `package.json`
 
-Para utilizar ele no seu cotidiano, é indicado que ele seja instalado globalmente:
+Instale o **Gulp** globalmente no seu console através do comando:
 
-`$ npm install -g gulp`
+```{r, engine='bash'}
+$ npm install -g gulp
+```
 
-Para  instalar localmente e salvar em seu package.json:
+Se você não tiver um arquivo `package.json` modelo, você pode iniciar um através do comando:
 
-`$ npm install --save-dev gulp`
+```{r, engine='bash'}
+$ npm init
+```
+Em seguida responda as perguntas (a maioria delas pode ser deixada em branco, basta clicar <ENTER> ou digitar <Yes>.
+
+Para  instalar localmente e salvar em seu `package.json`:
+
+```{r, engine='bash'}
+$ npm install --save-dev gulp
+```
 
 ##O nosso workflow
-Nós vamos apenas gerar arquivos CSS utilizando Sass e minificá-los já com a geração de um arquivo MAP para permitir que debuguemos ele em ambientes de homologação.
+
+Nós vamos apenas gerar arquivos CSS utilizando Sass e minificá-los já com a geração de um arquivo Sourcemap para permitir que o debuguemos em ambientes de homologação.
 
 O workflow será:
 
@@ -43,28 +55,35 @@ O workflow será:
 * Mapear o(s) arquivo(s) a ser(em) gerado(s);
 * Gerar o CSS baseado no Sass
 * Minificar o arquivo gerado
-* Escrever o arquivo MAP respectivo na mesma pasta do CSS gerado
+* Escrever o arquivo Sourcemap respectivo na mesma pasta do CSS gerado
 * Salvar o arquivo CSS
 * Dar reload no navegador automaticamente após gerar o CSS
 
-Para isso vamos utilizar os pacotes gulp-sass, gulp-sourcemaps e browser-sync.
-
+Para isso vamos utilizar os pacotes `gulp-sass`, `gulp-sourcemaps` e `browser-sync`.
 Para instalar eles podemos fazer um a um:
 
-`$ npm install --save-dev gulp-sass`
+```{r, engine='bash'}
+$ npm install --save-dev gulp-sass
+```
 
-`$ npm install --save-dev gulp-sourcemaps`
+```{r, engine='bash'}
+$ npm install --save-dev gulp-sourcemaps
+```
 
-`$ npm install --save-dev browser-sync`
+```{r, engine='bash'}
+$ npm install --save-dev browser-sync
+```
 
 Ou instalar todos de uma vez:
 
-`$ npm install --save-dev gulp-sass gulp-sourcemaps browser-sync`
+```{r, engine='bash'}
+$ npm install --save-dev gulp-sass gulp-sourcemaps browser-sync
+```
 
-O nosso workflow vai ser forma com três tasks principais:
-Iremos utilizar a gulp sass para gerar o Sass;
-Configurar o reload do automático do navegador usando o browserSync;
-E a gulp watch para ficar “vigiando” modificações em arquivos Sass no nosso diretório.
+O nosso workflow vai se formar com três tasks principais:
+1. Iremos utilizar a gulp sass para gerar o Sass;
+* Configurar o reload do automático do navegador usando o browserSync;
+* E a gulp watch para ficar “vigiando” modificações em arquivos Sass no nosso diretório.
 
 A nossa estrutura de pasta será:
 
@@ -76,7 +95,7 @@ A nossa estrutura de pasta será:
 
 ```
 
-Crie um arquivo gulpfile.js na raiz do seu projeto. Teremos o seguinte conteúdo inicial chamando os módulos:
+Crie um arquivo `gulpfile.js na raiz do seu projeto. Teremos o seguinte conteúdo inicial chamando os módulos:
 
 ```javascript
 var gulp = require('gulp'),
@@ -112,11 +131,17 @@ gulp.task('watch', function(){
 
 Teste elas em seu console chamando:
 
-`gulp sass`
+```{r, engine='bash'}
+gulp sass
+```
 
-`gulp watch`
+```{r, engine='bash'}
+gulp watch
+```
 
-`gulp browserSync`
+```{r, engine='bash'}
+gulp browserSync
+```
 
 O resultado será a impressão de mensagens em seu console das três tarefas na ordem que você as chamou.
 
@@ -152,7 +177,7 @@ gulp.task('watch', ['browserSync'], function() { //inicia a watch, colocando jun
 });
 ```
 
-O arquivo limpo ficará algo como:
+O arquivo inteiro ficará algo como:
 
 ```javascript
 var gulp = require('gulp'),
@@ -194,6 +219,7 @@ gulp.task('watch', ['browserSync'], function() {
 ```
 
 ##Testando o resultado
+
 Para testar faça algumas coisas:
 
 1. Abra o arquivo `index.html` e o edite;
@@ -203,15 +229,17 @@ Para testar faça algumas coisas:
 5. Veja a magia acontecer em seu navegador.
 
 ##O mais legal de tudo
-Esse workflow não precisa do Sass instalado via Ruby na sua máquina. Ele usa um módulo "portado" para Node.js chamado node-sass.
+Esse workflow não precisa do Sass instalado via Ruby na sua máquina. Ele usa um módulo "portado" para Node.js chamado `node-sass`.
 
-Para utilizar o compass, por exemplo, você pode fazer uma pequena alteração nesse workflow e, desde que tenha o Ruby, Sass e Compass instalados na sua máquina poderá utilizar dessa biblioteca Sass sem problema algum.
+Para utilizar o Compass, por exemplo, você pode fazer uma pequena alteração nesse workflow e, desde que tenha o Ruby, Sass e Compass instalados na sua máquina poderá utilizar dessa biblioteca Sass sem problema algum.
 
 Se tiver o Ruby + Sass + Compass na sua máquina, só instalar o módulo para gulp:
 
-`$ npm install --save-dev gulp-compass`
+```{r, engine='bash'}
+$ npm install --save-dev gulp-compass
+```
 
-Crie uma task compass:
+Crie uma task [compass]:
 
 ```javascript
 gulp.task('compass', function() {
@@ -234,7 +262,7 @@ gulp.task('compass', function() {
 ```
 Observe que a estrutura mudou bastante e foi removida o módulo `sourcemap`.
 
-Isso se dá porque o `gulp-compass` já faz a geração do sourcemap quando realiza a compressão se você assim definir em suas options.
+Isso se dá porque o `gulp-compass` já faz a geração do Sourcemap quando realiza a compressão se você assim definir em suas options.
 
 Aí você pode criar uma task também nova para o Watch especificamente para casos de uso do Compass:
 
@@ -244,7 +272,9 @@ gulp.task('watch-compass', ['browserSync'], function() {
 });
 ```
 
-Rode a tarefa `gulp watch-compass` e execute o teste. Voilá, está funcionando (ou era pra estar)! :)
+Rode a tarefa `gulp watch-compass` e execute o teste. 
+
+Voilá, está funcionando (ou era pra estar)! :)
 
 O arquivo ficará da seguinte maneira:
 
@@ -313,4 +343,5 @@ gulp.task('watch-compass', ['browserSync'], function() {
 ```
 
 ##Dúvidas, bugs e sugestões
+
 Basta crirar uma issue que a gente discute e entramos em contato. Caso queira conversar sobre qualquer assunto relacionado entre em contato através do [meu site](www.bonsaiux.com.br).
