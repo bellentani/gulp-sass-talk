@@ -322,7 +322,6 @@ gulp.task('compass', function() {
       sourcemap: true
     }))
     .on('error', function(error) {
-      // Would like to catch the error here
       console.log(error);
       this.emit('end');
     })
